@@ -2,10 +2,28 @@
 <html>
     <head>
        <style>
+       .text-body{
+               font-size: 23px;
+               font-family: "Arial Verdana", Arial, sans-serif;
+       }
 
         .error {
                color: red;
              }
+
+        
+             html {
+                 background: #e6e9e9;
+                 background-image: linear-gradient(270deg, rgb(100, 181, 239) 25%, rgb(106, 90, 205) 100%);
+                 -webkit-font-smoothing: antialiased;
+             }
+
+        h1 {
+          color: rgb(220,220,220);
+          font-size: 40px;
+          font-family: "Times New Roman", Times, serif;
+
+        }
         form {
                background-color: #eee;
                padding: 20px;
@@ -20,16 +38,13 @@
               height: 300px;
              }
 
-
        </style>
    </head>
     <titles>{{title}}</titles>
 </head>
 
 <body>
-    <div>
-        <a href='/newpost'> Make a post </a> <a href='/blog'> View your posts  </a>
-    </div>
+        <a href='/newpost'>   Make a post   </a>  <a href='/blog'>   View your posts  </a>
 
    {% block content %}
    {% endblock %}
