@@ -9,12 +9,12 @@
         {% for post in postings %}
 
 
-        <h1>{{post.title}}</h1>
+        <a href = "/blog?id={{post.id}}"><h1>{{post.title}}</h1></a>
 
         <div class="text-body; lefty">
         {{post.body}}
         </div>
-        
+
         {% endfor %}
 
     {% endif %}

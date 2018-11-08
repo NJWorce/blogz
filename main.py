@@ -20,8 +20,11 @@ class BlogPost(db.Model):
         self.title = title
         self.body = body
 
+
+
 @app.route('/newpost', methods = ['POST', 'GET'])
 def make_a_post():
+
     if request.method == 'POST':
         post_title = request.form['title']    #passing the title from the form into python
         post_body = request.form['blog-entry'] #passing the body from the form into python
@@ -40,7 +43,10 @@ def make_a_post():
             new_post = BlogPost(post_title, post_body)    #building a new BlogPost object with the BlogPost constructer
             db.session.add(new_post)
             db.session.commit()                          #finishing up adding the object to the db
-            return redirect('/blog')
+            post_count = post_count + 1
+            display_post_title = Task.query.filter_by(id=post_count).all()
+            display_post_body = Task.query.filter_by(id=post_count).all()
+
 
     if request.method == 'GET':
         return render_template('add-post.html')     #renders the template
@@ -48,8 +54,15 @@ def make_a_post():
 @app.route('/blog', methods = ['POST', 'GET'])
 
 def index():                                         #slimmed down rendering of the blog template
-    postings = BlogPost.query.all()
-    return render_template('view-post.html', postings=postings)
+
+    post_id = request.args.get('id')
+    if post_id == None:
+        postings = BlogPost.query.all()                          #if the requested id param is none then
+        return render_template('view-post.html', postings=postings)  #we just render the front page
+
+    else:
+        single_post = BlogPost.query.filter_by(id=post_id).all() #if not I filter the BlogPosts by the id then render
+        return render_template('one-post.html', postings=single_post)
 
 
 
