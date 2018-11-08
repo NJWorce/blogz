@@ -43,9 +43,10 @@ def make_a_post():
             new_post = BlogPost(post_title, post_body)    #building a new BlogPost object with the BlogPost constructer
             db.session.add(new_post)
             db.session.commit()                          #finishing up adding the object to the db
-            post_count = post_count + 1
-            display_post_title = Task.query.filter_by(id=post_count).all()
-            display_post_body = Task.query.filter_by(id=post_count).all()
+
+                            # hopefully this pulls the last id value.
+            single_post = BlogPost.query.filter_by(title=post_title).all() #filters by the value just stated
+            return render_template('one-post.html',postings=single_post) #renders template passing in that param
 
 
     if request.method == 'GET':
