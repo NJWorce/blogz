@@ -2,6 +2,13 @@
 <html>
     <head>
        <style>
+       .center {
+              text-align: center;
+       }
+       .right {
+               text-align: right;
+       }
+
        .text-body{
                font-size: 23px;
                font-family: "Arial Verdana", Arial, sans-serif;
@@ -32,7 +39,7 @@
              }
 
         h1 {
-          color: rgb(220,220,220);
+          color: rgb(115,155,155);
           font-size: 40px;
           font-family: "Times New Roman", Times, serif;
         }
@@ -42,7 +49,7 @@
           line-height: 1.3;
         }
 
-      
+
         form {
                background-color: #eee;
                padding: 20px;
@@ -58,13 +65,17 @@
              }
 
        </style>
-   </head>
-    <titles>{{title}}</titles>
-    <a href='/newpost'>   Make a post   </a>&nbsp;  <a href='/blog'>   View your posts  </a>
 
+    <titles>{{title}}</titles>
+    <a href='/newpost'> Make a post </a>&nbsp;&nbsp  <a href='/blog'> All Posts</a>
+
+    <header><div class="right">
+          <a href='/'>Home</a> <a href='/login'>Login</a> <a href='/logout'>log out</a>
+      </header> </div>
 </head>
 
 <body>
+
   {% with messages = get_flashed_messages(with_categories=True) %}
 
          {% for catagory, message in messages %}
